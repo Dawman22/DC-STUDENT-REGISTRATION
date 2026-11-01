@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Enroll | Student Registration</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo"><span>N</span> NOVA ENROLL</div>
+    <p class="side-title">WORKSPACE</p>
+    <a href="#registration">＋ Registration</a>
+    <a href="#records">▤ Student Directory</a>
+    <a href="#activity">⌁ DOM Activity</a>
+    <div class="side-footer">● System operational<br><small>Advanced Application Development</small></div>
+  </aside>
+
+  <main>
+    <header>
+      <div>
+        <p class="eyebrow">STUDENT SERVICES / REGISTRATION</p>
+        <h1>Student Registration</h1>
+        <p class="muted">Create student profiles and explore dynamic DOM operations.</p>
+      </div>
+      <button id="themeBtn" class="secondary">☾ Dark mode</button>
+    </header>
+
+    <section class="stats">
+      <article><small>REGISTERED STUDENTS</small><h2 id="total">0</h2></article>
+      <article><small>ACTIVE STUDENTS</small><h2 id="active">0</h2></article>
+      <article><small>DOM EVENTS</small><h2 id="eventCount">0</h2></article>
+    </section>
+
+    <section class="panel" id="registration">
+      <div class="section-head">
+        <div>
+          <span class="tag">NEW PROFILE</span>
+          <h2>Register a student</h2>
+          <p class="muted">Complete the form below. All fields marked * are required.</p>
+        </div>
+        <button type="button" id="sampleBtn" class="secondary">✦ Fill sample</button>
+      </div>
+
+      <form id="studentForm" novalidate>
+        <div class="form-grid">
+          <label>Full name *
+            <input id="name" placeholder="Enter full name">
+            <small class="error" id="nameError"></small>
+          </label>
+          <label>Email address *
+            <input id="email" type="email" placeholder="student@email.com">
+            <small class="error" id="emailError"></small>
+          </label>
+          <label>Contact number *
+            <input id="phone" maxlength="10" placeholder="10-digit mobile number">
+            <small class="error" id="phoneError"></small>
+          </label>
+          <label>Course stream *
+            <select id="course">
+              <option value="">Choose a course</option>
+              <option>BCA</option>
+              <option>B.Tech Computer Science</option>
+              <option>B.Sc IT</option>
+              <option>MCA</option>
+              <option>Data Science</option>
+              <option>Cyber Security</option>
+              <option>Other</option>
+            </select>
+            <small class="error" id="courseError"></small>
+          </label>
+          <label>Password *
+            <div class="password-box">
+              <input id="password" type="password" placeholder="Minimum 6 characters">
+              <button type="button" id="showPassword">Show</button>
+            </div>
+            <div class="strength"><span id="strengthBar"></span></div>
+            <small id="strengthText" class="muted">Password strength</small>
+            <small class="error" id="passwordError"></small>
+          </label>
+          <label>Confirm password *
+            <input id="confirmPassword" type="password" placeholder="Repeat password">
+            <small class="error" id="confirmError"></small>
+          </label>
+        </div>
+
+        <div class="form-section">
+          <h3>Gender identity *</h3>
+          <div class="choices">
+            <label><input type="radio" name="gender" value="Male"> Male</label>
+            <label><input type="radio" name="gender" value="Female"> Female</label>
+            <label><input type="radio" name="gender" value="Non-Binary"> Non-Binary</label>
+            <label><input type="radio" name="gender" value="Prefer not to say"> Prefer not to say</label>
+          </div>
+          <small class="error" id="genderError"></small>
+        </div>
+
+        <div class="form-section">
+          <h3>Technical skills & competencies</h3>
+          <div class="choices">
+            <label><input type="checkbox" name="skills" value="HTML5 & DOM"> HTML5 & DOM</label>
+            <label><input type="checkbox" name="skills" value="Modern CSS"> Modern CSS</label>
+            <label><input type="checkbox" name="skills" value="JavaScript ES6+"> JavaScript ES6+</label>
+            <label><input type="checkbox" name="skills" value="React / Node"> React / Node</label>
+            <label><input type="checkbox" name="skills" value="Python / SQL"> Python / SQL</label>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3>Academic ambition <small class="muted">OPTIONAL</small></h3>
+          <textarea id="ambition" maxlength="150" rows="3"
+            placeholder="Tell us about your academic goals..."></textarea>
+          <div class="counter"><span>Maximum 150 characters</span><span id="charCount">0 / 150</span></div>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" id="consent">
+          I confirm that the submitted details are accurate.
+        </label>
+        <small class="error" id="consentError"></small>
+
+        <div class="actions">
+          <button type="submit" class="primary" id="submitBtn">Register student →</button>
+          <button type="reset" class="secondary">Reset form</button>
+        </div>
+        <p id="feedback" class="feedback"></p>
+      </form>
+    </section>
+
+    <section class="panel" id="records">
+      <div class="section-head">
+        <div>
+          <span class="tag">STUDENT DIRECTORY</span>
+          <h2>Registered students <span class="count" id="recordCount">0</span></h2>
+          <p class="muted">Records generated dynamically using JavaScript DOM methods.</p>
+        </div>
+        <input type="search" id="search" placeholder="Search students...">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th><th>STUDENT</th><th>CONTACT</th>
+              <th>COURSE</th><th>SKILLS</th><th>STATUS</th><th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody id="studentTable">
+            <tr><td colspan="7" class="empty">No student records yet. Register your first student.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="activity">
+      <div class="section-head">
+        <div>
+          <span class="tag">UNDER THE HOOD</span>
+          <h2>DOM Activity Log</h2>
+          <p class="muted">Real-time log of DOM methods and events.</p>
+        </div>
+        <button class="secondary" id="clearLog">Clear log</button>
+      </div>
+      <div class="filters">
+        <span>FILTER:</span>
+        <button class="filter active" data-filter="All">All</button>
+        <button class="filter" data-filter="Query">Query</button>
+        <button class="filter" data-filter="Create">Create</button>
+        <button class="filter" data-filter="Mutate">Mutate</button>
+        <button class="filter" data-filter="Event">Event</button>
+      </div>
+      <div id="logList" class="log-list">
+        <p class="empty">No activity yet. Start interacting with the application.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <span class="tag">REFERENCE GUIDE</span>
+      <h2>DOM Methods Index</h2>
+      <div class="method-grid">
+        <article><h3>Element Selection</h3>
+          <code>getElementById()</code><code>querySelector()</code><code>querySelectorAll()</code>
+        </article>
+        <article><h3>Node Creation</h3>
+          <code>createElement()</code><code>appendChild()</code><code>prepend()</code>
+        </article>
+        <article><h3>Content & Attributes</h3>
+          <code>textContent</code><code>setAttribute()</code><code>classList</code>
+        </article>
+        <article><h3>Event Handling</h3>
+          <code>addEventListener()</code><code>remove()</code><code>parentElement</code>
+        </article>
+      </div>
+    </section>
+
+    <footer>© 2026 NOVA ENROLL <span>STUDENT REGISTRATION • DOM LAB</span></footer>
+  </main>
+</body>
+</html>
